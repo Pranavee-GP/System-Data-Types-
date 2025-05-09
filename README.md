@@ -1,7 +1,3 @@
-Here's an elaborated and well-structured **README** content for your GitHub repository, written in a professional and beginner-friendly tone, with strong vocabulary, clear formatting, and deep context to reflect your journey and learning focus:
-
----
-
 # 🌡️ Temperature Converter GUI using Python and Tkinter
 
 ### 📅 Day 1 of My Python Library Learning Journey
@@ -55,7 +51,9 @@ I chose to start with a temperature converter because:
 
 ## 📸 Screenshot
 
-> *(Include a screenshot here if possible showing the GUI with dropdowns and output label)*
+![image](https://github.com/user-attachments/assets/2459ba08-7309-4776-bdcd-b544fd192739)
+![image](https://github.com/user-attachments/assets/68bb32d9-c588-46aa-89b4-ff0318863367)
+
 
 ---
 
