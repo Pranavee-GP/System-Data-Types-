@@ -1,0 +1,75 @@
+import tkinter as tk
+from tkinter import ttk, messagebox
+
+# Conversion logic
+def convert_temperature():
+    try:
+        temp = float(entry.get())
+        from_unit = from_choice.get()
+        to_unit = to_choice.get()
+        result = None
+
+        if from_unit == to_unit:
+            result = temp
+        elif from_unit == "Celsius":
+            if to_unit == "Fahrenheit":
+                result = (temp * 9/5) + 32
+            elif to_unit == "Kelvin":
+                result = temp + 273.15
+        elif from_unit == "Fahrenheit":
+            if to_unit == "Celsius":
+                result = (temp - 32) * 5/9
+            elif to_unit == "Kelvin":
+                result = (temp - 32) * 5/9 + 273.15
+        elif from_unit == "Kelvin":
+            if to_unit == "Celsius":
+                result = temp - 273.15
+            elif to_unit == "Fahrenheit":
+                result = (temp - 273.15) * 9/5 + 32
+
+        if result is not None:
+            output = f"{temp:.2f}°{from_unit[0]} = {result:.2f}°{to_unit[0]}"
+            output_label.config(text=output)
+            history_listbox.insert(tk.END, output)
+        else:
+            output_label.config(text="Conversion not supported")
+
+    except ValueError:
+        messagebox.showerror("Invalid Input", "Please enter a valid number")
+
+# Create GUI window
+root = tk.Tk()
+root.title("Temperature Converter")
+root.geometry("400x350")
+root.resizable(False, False)
+
+# Dropdowns for units
+units = ["Celsius", "Fahrenheit", "Kelvin"]
+
+from_choice = ttk.Combobox(root, values=units, state="readonly")
+from_choice.set("Celsius")
+from_choice.pack(pady=5)
+
+to_choice = ttk.Combobox(root, values=units, state="readonly")
+to_choice.set("Fahrenheit")
+to_choice.pack(pady=5)
+
+# Entry box
+entry = tk.Entry(root, width=20)
+entry.pack(pady=5)
+
+# Convert button
+convert_button = tk.Button(root, text="Convert", command=convert_temperature)
+convert_button.pack(pady=10)
+
+# Output label
+output_label = tk.Label(root, text="", font=("Arial", 12))
+output_label.pack(pady=5)
+
+# History Label and Listbox
+tk.Label(root, text="Conversion History:", font=("Arial", 10)).pack(pady=5)
+history_listbox = tk.Listbox(root, width=45, height=7)
+history_listbox.pack(pady=5)
+
+# Run the GUI loop
+root.mainloop()
